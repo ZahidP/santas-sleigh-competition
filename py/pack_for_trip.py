@@ -17,13 +17,13 @@ def cluster_trip_creation(cluster,gifts,trip_id,verbose):
     number_of_gifts = 0
     subset = gifts.loc[gifts.cluster == cluster]
     subset = subset.sort(['Weight'], ascending=[False])
-    s = subset.size
+    s = subset['GiftId'].count()
     data = np.zeros([s,s])
     distances = pd.DataFrame(data)
     for index,item in subset.iterrows():
-        idx = index + 1
-        if (idx < subset.size):
-            for index1,item1 in subset.iloc[[idx:],:].iterrows();
+        #idx = index + 1
+        if (idx < subset['GiftId'].count()):
+            for index1,item1 in subset.iterrows():
                 distances.iloc[index1,index] = haver_ab(item,item1)
 
     for index,item in subset.iterrows():
@@ -60,7 +60,9 @@ def do_trips(clusters,gifts,run,verbose):
 # @param: pandas dataframe
 # @output: pandas dataframe with distances
 def haver_ab(row_a,row_b):
-    lat_long_a = (row_a.Latitude,row_b.Longitude)
-    lat_long_b = (row_a.Latitude,row_b.Longitude)
+    lat_long_a = (row_a.Latitude,row_a.Longitude)
+    #print(lat_long_a)
+    lat_long_b = (row_b.Latitude,row_b.Longitude)
+    #print(lat_long_b)
     distance = haversine(lat_long_a,lat_long_b)
     return distance
