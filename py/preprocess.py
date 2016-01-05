@@ -54,11 +54,10 @@ def clustering(gifts,n_clusters):
 # @output: pandas dataframe with cluster number column
 # notes: see your notebook
 # ## this might be more of an altered distance function rather than savings
-def savings(gifts):
-    # blah blah
 
 
-newfit = newfit.reshape(lat_long.shape)
-plt.figure(1)
-plt.clf()
-plt.imshow(newfit,cmap=plt.cm.Paired, aspect='auto', origin='lower')
+
+# newfit = newfit.reshape(lat_long.shape)
+# plt.figure(1)
+# plt.clf()
+# plt.imshow(newfit,cmap=plt.cm.Paired, aspect='auto', origin='lower')
