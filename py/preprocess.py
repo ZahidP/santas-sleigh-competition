@@ -44,8 +44,8 @@ def clustering(gifts,n_clusters):
     fig = plt.figure()
     ax = fig.add_subplot(111)
     cmhot = plt.get_cmap("hot")
-    cax = ax.scatter(lat_long['Longitude'],lat_long['Latitude'], c=labels, cmap=cmhot)
-    plt.show()
+    # cax = ax.scatter(lat_long['Longitude'],lat_long['Latitude'], c=labels, cmap=cmhot)
+    # plt.show()
     gifts['cluster'] = labels
     return gifts
 
@@ -54,11 +54,11 @@ def clustering(gifts,n_clusters):
 # @output: pandas dataframe with cluster number column
 # notes: see your notebook
 # ## this might be more of an altered distance function rather than savings
-def savings(gifts):
-    # blah blah
-
-
-newfit = newfit.reshape(lat_long.shape)
-plt.figure(1)
-plt.clf()
-plt.imshow(newfit,cmap=plt.cm.Paired, aspect='auto', origin='lower')
+# def savings(gifts):
+#     # blah blah
+#
+#
+# newfit = newfit.reshape(lat_long.shape)
+# plt.figure(1)
+# plt.clf()
+# plt.imshow(newfit,cmap=plt.cm.Paired, aspect='auto', origin='lower')
