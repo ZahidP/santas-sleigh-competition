@@ -22,6 +22,7 @@ def distances():
 # @param: pandas dataframe
 # @output: pandas dataframe with distances
 def haver(row):
+    north_pole = (90,0)
     lat_long = (row.Latitude,row.Longitude)
     distance = haversine(north_pole,lat_long)
     return distance
@@ -48,6 +49,17 @@ def clustering(gifts,n_clusters):
     plt.show()
     gifts['cluster'] = labels
     return gifts
+
+gifts1 = gifts.iloc[0:30000]
+gifts2 = gifts.iloc[30000:60000]
+gifts3 = gifts.iloc[60000:100000]
+gifts1 = clustering(gifts1,100)
+gifts2 = clustering(gifts2,100)
+gifts3 = clustering(gifts3,100)
+trip_id = 1
+do_trips(100,gifts1,'run_g1',False)
+do_trips(100,gifts2,'run_g2',False)
+do_trips(100,gifts3,'run_g3',False)
 
 # @description: in accordance with the clarke-wright algorithm, we need a savings array
 # @param: pandas dataframe
