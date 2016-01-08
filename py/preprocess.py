@@ -45,21 +45,37 @@ def clustering(gifts,n_clusters):
     fig = plt.figure()
     ax = fig.add_subplot(111)
     cmhot = plt.get_cmap("hot")
-    cax = ax.scatter(lat_long['Longitude'],lat_long['Latitude'], c=labels, cmap=cmhot)
-    plt.show()
+    #cax = ax.scatter(lat_long['Longitude'],lat_long['Latitude'], c=labels, cmap=cmhot)
+    #plt.show()
     gifts['cluster'] = labels
     return gifts
 
-gifts1 = gifts.iloc[0:30000]
-gifts2 = gifts.iloc[30000:60000]
-gifts3 = gifts.iloc[60000:100000]
-gifts1 = clustering(gifts1,100)
-gifts2 = clustering(gifts2,100)
-gifts3 = clustering(gifts3,100)
-trip_id = 1
-do_trips(100,gifts1,'run_g1',False)
-do_trips(100,gifts2,'run_g2',False)
-do_trips(100,gifts3,'run_g3',False)
+def run_all():
+    gifts = distances()
+    gifts1 = gifts.iloc[0:20000]
+    gifts2 = gifts.iloc[20000:40000]
+    gifts3 = gifts.iloc[40000:60000]
+    gifts4 = gifts.iloc[60000:70000]
+    gifts5 = gifts.iloc[70000:800000]
+    gifts6 = gifts.iloc[80000:90000]
+    gifts7 = gifts.iloc[90000:100000]
+
+    gifts1 = clustering(gifts1,100)
+    gifts2 = clustering(gifts2,100)
+    gifts3 = clustering(gifts3,100)
+    gifts4 = clustering(gifts4,100)
+    gifts5 = clustering(gifts5,100)
+    gifts6 = clustering(gifts6,100)
+    gifts7 = clustering(gifts7,100)
+
+    trip_id = 1
+    gifts1 = do_trips(100,gifts1,'run_g1',False,trip_id)
+    gifts2 = do_trips(100,gifts2,'run_g2',False,trip_id+500)
+    gifts3 = do_trips(100,gifts3,'run_g3',False,trip_id+1000)
+    gifts4 = do_trips(100,gifts4,'run_g4',False,trip_id+1500)
+    gifts5 = do_trips(100,gifts5,'run_g5',False,trip_id+2000)
+    gifts6 = do_trips(100,gifts6,'run_g6',False,trip_id+2500)
+    gifts7 = do_trips(100,gifts7,'run_g7',False,trip_id+3000)
 
 # @description: in accordance with the clarke-wright algorithm, we need a savings array
 # @param: pandas dataframe

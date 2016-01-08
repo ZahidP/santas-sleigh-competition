@@ -11,10 +11,7 @@ from matplotlib import pyplot
 # distance = lambda column1, column2: pd.np.linalg.norm(column1 - column2)
 # >>> result = zero_data.apply(lambda col1: zero_data.apply(lambda col2: distance(col1, col2)))
 
-# @description: we're gonna organize trips within clusters
-smaller2.served = False
-smaller2.trip_index = 0
-smaller2.trip_id = 0
+# @description: we're gonna organize trips within clusterss
 def cluster_trip_creation(cluster,gifts,trip_id,verbose):
     counter = 0
     current_load = 0
@@ -93,7 +90,7 @@ def cluster_trip_creation(cluster,gifts,trip_id,verbose):
     return trip_id
 
 
-def do_trips(clusters,gifts,run,verbose):
+def do_trips(clusters,gifts,run,verbose,trip_id):
     for i in range(0,clusters):
         if verbose:
             print('Cluster: ' + str(i))
