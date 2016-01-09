@@ -13,10 +13,7 @@ from matplotlib import pyplot
 
 # @description: we're gonna organize trips within clusterss
 def cluster_trip_creation(cluster,gifts,trip_id,verbose):
-    counter = 0
-    current_load = 0
-    number_of_gifts = 0
-    trip_index = 0
+    (counter,current_load,number_of_gifts,trip_index) = (0,0,0,0)
     subset = gifts.loc[gifts.cluster == cluster]
     s = subset.GiftId.count()
     to = np.zeros([s,3])
@@ -62,9 +59,10 @@ def cluster_trip_creation(cluster,gifts,trip_id,verbose):
             break
         if nearest_gift.served != True:
             c_gift_weight = unserved_df.loc[c_index-1].Weight  # @@ weight
-            if (current_load + nearest_gift.Weight) > 950:
+            if (current_load + nearest_gift.Weight) > 975:
                 # if the 1000 pound limit has been reached
                 # move on to next trip
+                print(current_load)
                 trip_id += 1
                 # reset the load
                 current_load = 0
@@ -97,7 +95,7 @@ def do_trips(clusters,gifts,run,verbose,trip_id):
             print('TripId: ' + str(trip_id))
         trip_id = cluster_trip_creation(i,gifts,trip_id,verbose)
         print(trip_id)
-    file_name = '../data/' + run + '.csv'
+    file_name = '../submissions/' + run + '.csv'
     gifts.to_csv(file_name)
     return gifts
 
