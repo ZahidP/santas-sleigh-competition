@@ -8,8 +8,8 @@ from sklearn.cluster import KMeans
 from matplotlib import pyplot
 
 
-distance = lambda column1, column2: pd.np.linalg.norm(column1 - column2)
->>> result = zero_data.apply(lambda col1: zero_data.apply(lambda col2: distance(col1, col2)))
+# distance = lambda column1, column2: pd.np.linalg.norm(column1 - column2)
+# >>> result = zero_data.apply(lambda col1: zero_data.apply(lambda col2: distance(col1, col2)))
 
 # @description: we're gonna organize trips within clusters
 def cluster_trip_creation(cluster,gifts,trip_id,verbose):
@@ -68,8 +68,10 @@ def haver_ab(row_a,row_b):
     return distance
 
 def overrides(gifts1,gifts2):
-    gifts2.trip_index = 5
-    for index,item in gifts.iterrows():
-        to_replace = gifts2[gifts2.GiftId == item.GiftId]
-        to_replace.TripId = item.TripId
-        to_replace.trip_index = item.trip_index
+    gifts2['trip_index'] = 5
+    gifts2 = gifts2.iloc[0:20000]
+    gifts1 = gifts1.iloc[0:20000]
+    gifts1.trip_id = gifts1.trip_id + 1500
+    result = pd.merge(gifts1, gifts2, on='GiftId')
+    results = results.sort(['TripId','trip_index'], ascending=[False]))
+    return result
